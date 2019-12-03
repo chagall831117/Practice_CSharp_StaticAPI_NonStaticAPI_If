@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
             Zb.SendMessage("Hurt", Atk);
             aud.clip = SoundAtk;
             aud.Play();
+            //aud.PlayOneShot(SoundAtk,float volumeScale)
         }
     }
     /// <summary>
@@ -35,9 +36,12 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Hurt(float RivalAtk)
     {
+        //HP扣掉對方傳來的ATK數值
         Hp = Hp - RivalAtk;
-        print("玩家受到傷害:" + RivalAtk);
-        print("玩家剩餘血量:" + Hp);
+        print("<color=blue>玩家受到傷害:" + RivalAtk +"</color>");
+        print("<color=blue>玩家剩餘血量:" + Hp+"</color>");
+        //檢查是否死亡
+        Death();
     }
     /// <summary>
     /// 死亡方法
@@ -46,7 +50,7 @@ public class Player : MonoBehaviour
     {
         if (Hp <= 0)
         {
-            print("玩家死亡");
+            print("<color=blue>玩家死亡</color>");
         }
     }
     // Start is called before the first frame update
@@ -59,6 +63,5 @@ public class Player : MonoBehaviour
     void Update()
     {
         Attack();
-        Death();
     }
 }

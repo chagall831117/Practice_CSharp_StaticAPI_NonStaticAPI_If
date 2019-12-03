@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
@@ -30,6 +28,7 @@ public class Zombie : MonoBehaviour
             player.SendMessage("Hurt", Atk);
             aud.clip = SoundAtk;
             aud.Play();
+            //aud.PlayOneShot(SoundAtk,float volumeScale)
         }
     } 
     /// <summary>
@@ -37,9 +36,12 @@ public class Zombie : MonoBehaviour
     /// </summary>
     private void Hurt(float RivalAtk)
     {
+        //HP扣掉對方傳來的ATK數值
         Hp = Hp - RivalAtk;
-        print("殭屍受到傷害:" + RivalAtk);
-        print("殭屍剩餘血量:" + Hp);
+        print("<color=red>殭屍受到傷害:" + RivalAtk+"</color>");
+        print("<color=red>殭屍剩餘血量:" + Hp+ "</color>");
+        //檢查是否死亡
+        Death();
     }
     /// <summary>
     /// 死亡方法
@@ -48,7 +50,7 @@ public class Zombie : MonoBehaviour
     {
         if (Hp <= 0)
         {
-            print("殭屍死亡");
+            print("<color=red>殭屍死亡</color>");
         }
     }
     // Start is called before the first frame update
@@ -61,6 +63,5 @@ public class Zombie : MonoBehaviour
     void Update()
     {
         Attack();
-        Death();
     }
 }
